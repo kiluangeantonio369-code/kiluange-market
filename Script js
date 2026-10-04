@@ -1,0 +1,225 @@
+const WHATSAPP = "244953934686";
+
+const produtos = [
+  {
+    id: 1,
+    nome: "Camiseta BICO DAS'AXILAS",
+    preco: 6000,
+    categoria: "BICO",
+    descricao: "Primeira coleção BICO DAS'AXILAS"
+  },
+  {
+    id: 2,
+    nome: "Chapéu das axilas",
+    preco: 3000,
+    categoria: "BICO",
+    descricao: "Sempre a bicar."
+  },
+  {
+    id: 3,
+    nome: "Capa das'axilas",
+    preco: 4500,
+    categoria: "Acessórios",
+    descricao: "Capa para telefone."
+  },
+  {
+    id: 4,
+    nome: "Calças Linho",
+    preco: 8000,
+    categoria: "Moda",
+    descricao: "Calças azuis."
+  },
+  {
+    id: 5,
+    nome: "Pandora portuguesa",
+    preco: 20000,
+    categoria: "Acessórios",
+    descricao: "Acessório para combinar com o teu estilo."
+  }
+];
+
+let carrinho =
+  JSON.parse(localStorage.getItem("kiluangeCarrinho")) || [];
+
+function dinheiro(valor) {
+  return valor.toLocaleString("pt-AO") + " Kz";
+}
+
+function guardarCarrinho() {
+  localStorage.setItem(
+    "kiluangeCarrinho",
+    JSON.stringify(carrinho)
+  );
+}
+
+function atualizarContador() {
+  const contador = document.querySelector("#contador-carrinho");
+
+  if (!contador) return;
+
+  const quantidade = carrinho.reduce(
+    (total, item) => total + item.quantidade,
+    0
+  );
+
+  contador.textContent = quantidade;
+}
+
+function mostrarProdutos(lista = produtos) {
+  const grade = document.querySelector("#grade-produtos");
+
+  if (!grade) return;
+
+  grade.innerHTML = "";
+
+  lista.forEach(produto => {
+    const card = document.createElement("article");
+
+    card.className = "produto-card";
+
+    card.innerHTML = `
+      <div class="produto-imagem">
+        <span>${produto.nome.charAt(0)}</span>
+      </div>
+
+      <div class="produto-info">
+        <small>${produto.categoria}</small>
+
+        <h3>${produto.nome}</h3>
+
+        <p>${produto.descricao}</p>
+
+        <strong>${dinheiro(produto.preco)}</strong>
+
+        <button onclick="adicionarCarrinho(${produto.id})">
+          🛒 Adicionar ao carrinho
+        </button>
+      </div>
+    `;
+
+    grade.appendChild(card);
+  });
+}
+
+function adicionarCarrinho(id) {
+  const produto = produtos.find(
+    item => item.id === id
+  );
+
+  if (!produto) return;
+
+  const existente = carrinho.find(
+    item => item.id === id
+  );
+
+  if (existente) {
+    existente.quantidade += 1;
+  } else {
+    carrinho.push({
+      ...produto,
+      quantidade: 1
+    });
+  }
+
+  guardarCarrinho();
+  atualizarContador();
+
+  alert(
+    produto.nome +
+    " foi adicionado ao carrinho!"
+  );
+}
+
+function removerProduto(id) {
+  carrinho = carrinho.filter(
+    item => item.id !== id
+  );
+
+  guardarCarrinho();
+  atualizarContador();
+}
+
+function finalizarWhatsApp() {
+  if (carrinho.length === 0) {
+    alert("O carrinho está vazio.");
+    return;
+  }
+
+  let mensagem =
+    "🛒 *PEDIDO KILUANGE MARKET*%0A%0A";
+
+  let total = 0;
+
+  carrinho.forEach(item => {
+    const subtotal =
+      item.preco * item.quantidade;
+
+    total += subtotal;
+
+    mensagem +=
+      `• ${item.nome}%0A` +
+      `Quantidade: ${item.quantidade}%0A` +
+      `Subtotal: ${dinheiro(subtotal)}%0A%0A`;
+  });
+
+  mensagem +=
+    `💰 *TOTAL: ${dinheiro(total)}*%0A%0A` +
+    "Olá! Quero finalizar este pedido.";
+
+  window.open(
+    `https://wa.me/${WHATSAPP}?text=${mensagem}`,
+    "_blank"
+  );
+}
+
+function abrirCarrinho() {
+  if (carrinho.length === 0) {
+    alert("O carrinho está vazio.");
+    return;
+  }
+
+  let resumo =
+    "🛒 CARRINHO KILUANGE MARKET\n\n";
+
+  let total = 0;
+
+  carrinho.forEach(item => {
+    const subtotal =
+      item.preco * item.quantidade;
+
+    total += subtotal;
+
+    resumo +=
+      `${item.nome}\n` +
+      `Quantidade: ${item.quantidade}\n` +
+      `${dinheiro(subtotal)}\n\n`;
+  });
+
+  resumo +=
+    `TOTAL: ${dinheiro(total)}\n\n` +
+    "Deseja finalizar pelo WhatsApp?";
+
+  if (confirm(resumo)) {
+    finalizarWhatsApp();
+  }
+}
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    mostrarProdutos();
+    atualizarContador();
+
+    const carrinhoBotao =
+      document.querySelector(
+        '[aria-label="Carrinho"]'
+      );
+
+    if (carrinhoBotao) {
+      carrinhoBotao.addEventListener(
+        "click",
+        abrirCarrinho
+      );
+    }
+  }
+);
