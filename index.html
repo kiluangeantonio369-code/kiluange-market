@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kiluange Market — Tudo num só lugar.">
+  <title>Kiluange Market — Tudo num só lugar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar">
+    <span>📍 Luanda, Angola</span>
+    <span>🚚 Entregas em Luanda</span>
+    <span>💬 Atendimento pelo WhatsApp</span>
+    <span>Seg–Sáb | 08:00–18:00</span>
+  </div>
+
+  <header class="header">
+    <a class="logo" href="#" aria-label="Kiluange Market">
+      <span class="logo-mark">K</span>
+      <span><b>KILUANGE</b><small>MARKET</small></span>
+    </a>
+
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contactos">Contactos</a>
+    </nav>
+
+    <div class="header-actions">
+      <label class="search">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Pesquisar produtos...">
+      </label>
+      <button class="icon-btn" id="cartButton" aria-label="Abrir carrinho">🛒<span id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">KILUANGE MARKET</p>
+        <h1>Tudo num <span>só lugar.</span></h1>
+        <p>Encontra os produtos que procuras, faz o teu pedido online e recebe atendimento rápido.</p>
+        <a class="btn primary" href="#produtos">Ver produtos →</a>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-k">K</div>
+          <strong>KILUANGE</strong>
+          <span>MARKET</span>
+        </div>
+        <div class="floating f1">Qualidade</div>
+        <div class="floating f2">Estilo</div>
+        <div class="floating f3">Confiança</div>
+      </div>
+    </section>
+
+    <section class="section" id="categorias">
+      <div class="section-head">
+        <div><p class="eyebrow">EXPLORA</p><h2>Categorias</h2></div>
+        <a href="#produtos">Ver todas →</a>
+      </div>
+      <div class="category-grid" id="categoryGrid"></div>
+    </section>
+
+    <section class="section" id="produtos">
+      <div class="section-head">
+        <div><p class="eyebrow">ESCOLHAS DA CASA</p><h2>Produtos em destaque</h2></div>
+      </div>
+
+      <div class="filters">
+        <button class="filter active" data-category="Todos">Todos</button>
+        <button class="filter" data-category="Moda">Moda</button>
+        <button class="filter" data-category="Calçados">Calçados</button>
+        <button class="filter" data-category="Beleza">Beleza</button>
+        <button class="filter" data-category="Tecnologia">Tecnologia</button>
+        <button class="filter" data-category="Acessórios">Acessórios</button>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+      <p class="empty" id="emptyProducts" hidden>Nenhum produto encontrado.</p>
+    </section>
+
+    <section class="promos section">
+      <article class="promo dark">
+        <div><p class="eyebrow">BICO DAS'AXILAS</p><h2>Sempre a Bicar</h2><p>Descobre a nova coleção.</p><a href="#produtos">Ver coleção →</a></div>
+        <div class="promo-shirt">BA</div>
+      </article>
+      <article class="promo blue">
+        <div><p class="eyebrow">KILUANGE MARKET</p><h2>Compra simples.</h2><p>Escolhe, pede e fala connosco pelo WhatsApp.</p><a href="#produtos">Comprar →</a></div>
+        <div class="promo-bag">🛍️</div>
+      </article>
+    </section>
+
+    <section class="benefits">
+      <div><b>🚚 Entregas em Luanda</b><span>Rápidas e seguras.</span></div>
+      <div><b>🛡️ Produtos selecionados</b><span>Qualidade em primeiro lugar.</span></div>
+      <div><b>💬 Atendimento WhatsApp</b><span>Fala diretamente connosco.</span></div>
+      <div><b>💵 Pagamento combinado</b><span>Confirmação antes da entrega.</span></div>
+    </section>
+
+    <section class="about section" id="sobre">
+      <div>
+        <p class="eyebrow">SOBRE A KILUANGE MARKET</p>
+        <h2>Uma loja online feita para facilitar as tuas compras.</h2>
+      </div>
+      <p>Na Kiluange Market, reunimos produtos selecionados num catálogo simples. O cliente escolhe, envia o pedido e a nossa equipa confirma os detalhes pelo WhatsApp.</p>
+    </section>
+  </main>
+
+  <footer id="contactos">
+    <div class="footer-brand">
+      <div class="logo inverse"><span class="logo-mark">K</span><span><b>KILUANGE</b><small>MARKET</small></span></div>
+      <p>Tudo num só lugar.</p>
+    </div>
+    <div><h3>Links rápidos</h3><a href="#inicio">Início</a><a href="#produtos">Produtos</a><a href="#categorias">Categorias</a><a href="#sobre">Sobre nós</a></div>
+    <div><h3>Contactos</h3><a id="whatsappFooter" href="#" target="_blank" rel="noopener">WhatsApp</a><a href="#">Instagram</a><a href="#">Facebook</a><span>Luanda, Angola</span></div>
+    <div><h3>Novidades</h3><p>Recebe novidades e promoções.</p><form id="newsletter"><input type="email" placeholder="O teu e-mail" required><button class="btn primary">Subscrever</button></form></div>
+    <div class="copyright">© 2026 Kiluange Market. Todos os direitos reservados.</div>
+  </footer>
+
+  <aside class="cart-panel" id="cartPanel" aria-hidden="true">
+    <div class="cart-header"><h2>O teu carrinho</h2><button id="closeCart">✕</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-total"><span>Total</span><strong id="cartTotal">0 Kz</strong></div>
+    <button class="btn primary full" id="checkoutButton">Finalizar pedido</button>
+    <p class="cart-note">O pedido será preparado para envio pelo WhatsApp.</p>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <div class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" data-close="productModal">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="checkoutModal" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" data-close="checkoutModal">✕</button>
+      <p class="eyebrow">FINALIZAR PEDIDO</p>
+      <h2>Confirma os teus dados</h2>
+      <form id="checkoutForm" class="checkout-form">
+        <input name="name" placeholder="Nome completo" required>
+        <input name="phone" placeholder="Telefone / WhatsApp" required>
+        <input name="location" placeholder="Município / Bairro" required>
+        <input name="reference" placeholder="Ponto de referência" required>
+        <textarea name="notes" placeholder="Observações (opcional)" rows="3"></textarea>
+        <button class="btn primary full" type="submit">Enviar pedido pelo WhatsApp</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
